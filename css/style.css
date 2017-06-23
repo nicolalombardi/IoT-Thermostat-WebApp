@@ -1,0 +1,159 @@
+.brand-logo{
+    margin-left: 10px;
+}
+
+.nav-header{
+    height: 150px;
+}
+
+.page-content{
+    margin-top: 20px;
+}
+.collapsible{
+    box-shadow: none;
+}
+.icon{
+    color: #757575;
+}
+
+label{
+    font-size:calc(12px + 1.4vw);
+}
+#heating_image{
+    width: calc(12px + 10vw);;
+    height: calc(12px + 10vw);;
+}
+
+#login-error{
+    width:100%;
+    height: 40px;
+    background-color: #FF0000;
+    color: #fff;
+    text-align: center;
+    display: none;
+
+}
+
+.control-button{
+    margin-top: 5vw;
+    color: white;
+    height: calc(45px + 2vw);
+    width: calc(45px + 2vw);
+    background-color: #ffc107;
+    border: none;
+    font-size: 300%;
+    vertical-align:middle;
+    border-radius: 4px;
+}
+.control-button:focus{
+    background-color: #ffc107;
+}
+
+.control-button:hover{
+    background-color: #ffb300;
+}
+
+.btn{
+    background-color: #ffc107;
+}
+
+.btn:hover{
+    background-color: #ffb300;
+}
+.side-nav li>a.btn:hover{
+    background-color: #ffb300;
+}
+
+.side-nav li>a.btn:focus{
+    background-color: #ffb300;
+}
+.login-header{
+    width:100%;
+    height: 70px;
+    background-color: #ff5722;
+    color: #fff;
+    text-align: center;
+}
+
+.modal{
+    width: 350px;
+    border-radius: 5px;
+}
+
+/* label focus color */
+   .input-field input[type=password]:focus + label {
+     color: #ffc107;
+   }
+   /* label underline focus color */
+   .input-field input[type=password]:focus {
+     border-bottom: 1px solid #ffc107;
+     box-shadow: 0 0px;
+   }
+
+/*Top dark bar*/
+.picker__weekday-display {
+    background-color: #e64a19;
+}
+/* Square with the day in it*/
+.picker__date-display {
+    background-color: #ff5722;
+}
+
+/*Selected day*/
+.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted {
+    background-color: #ffc107;
+}
+/*Arrows hover*/
+.picker__nav--prev:hover { background-color: #ffffff; }
+.picker__nav--next:hover { background-color: #ffffff; }
+
+.picker__today { color: #ffc107; }
+.picker__close { color: #ffc107; }
+
+.btn-flat.picker__today:active { background-color: #ffd54f; }
+.btn-flat.picker__close:active { background-color: #ffd54f; }
+.btn-flat.picker__clear:active { background-color: #ffd54f; }
+
+.picker__day.picker__day--today
+{ color: #ffc107;
+  font-weight: 700; }
+
+#temperature{
+    font-size:calc(12px + 10vw);
+}
+
+#timer{
+    font-size:calc(12px + 5vw);
+}
+
+#last_update{
+    color: #AAAAAA;
+}
+
+/* Resets */
+.graph-container,
+.graph-container div,
+.graph-container a,
+.graph-container span {
+    margin: 0;
+    padding: 0;
+}
+
+/* Gradinet and Rounded Corners */
+.graph-container, #tooltip, .graph-info a {
+    background: #ffffff;
+}
+
+/* Graph Container */
+.graph-container {
+    position: relative;
+    width: 100%;
+    height: 330px;
+}
+
+.graph-container > div {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    top: 10px;
+}
