@@ -22,7 +22,7 @@
    <body>
       <nav class="deep-orange" role="navigation">
          <div class="nav-wrapper container">
-            <a id="logo-container" href="index.html" class="brand-logo">Termostato</a>
+            <a id="logo-container" href="index.php" class="brand-logo">Termostato</a>
             <ul class="right hide-on-med-and-down">
                <li><a href="index.php">Stato</a></li>
                <li class="active"><a href="controllo.php">Controllo</a></li>
