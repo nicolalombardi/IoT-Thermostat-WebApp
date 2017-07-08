@@ -90,7 +90,7 @@ function getLiveData(){
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
         updateStats(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", "http://tesinaiot.altervista.org/api/live", true); // true for asynchronous
+    xmlHttp.open("GET", "http://thermostat.nicolal.tk/api/live", true); // true for asynchronous
     xmlHttp.send(null);
 }
 
@@ -139,7 +139,7 @@ function changeTimer(how){
 function setTemperature(){
     var temperature = document.getElementById("temperature").innerHTML;
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", "http://tesinaiot.altervista.org/api/controls", true);
+    xmlHttp.open("POST", "http://thermostat.nicolal.tk/api/controls", true);
     xmlHttp.onreadystatechange = function (){
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             console.log(xmlHttp.responseText);
@@ -167,7 +167,7 @@ function setToggle(){
 
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", "http://tesinaiot.altervista.org/api/controls", true);
+    xmlHttp.open("POST", "http://thermostat.nicolal.tk/api/controls", true);
     xmlHttp.onreadystatechange = function (){
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             console.log(xmlHttp.responseText);
@@ -186,7 +186,7 @@ function setToggle(){
 //Function that sends the target timer to the api page
 function setTimer(){
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", "http://tesinaiot.altervista.org/api/controls", true);
+    xmlHttp.open("POST", "http://thermostat.nicolal.tk/api/controls", true);
     xmlHttp.onreadystatechange = function (){
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             console.log(xmlHttp.responseText);
@@ -219,7 +219,7 @@ function setCurrentState(){
 
         }
     }
-    xmlHttp.open("GET", "http://tesinaiot.altervista.org/api/live", true); // true for asynchronous
+    xmlHttp.open("GET", "http://thermostat.nicolal.tk/api/live", true); // true for asynchronous
     xmlHttp.send(null);
 }
 
@@ -370,7 +370,7 @@ function getGraphMeasurements(from, to){
             drawGraph(xmlHttp.responseText);
         }
     }
-    var requestUrl = "http://tesinaiot.altervista.org/api/measurements?";
+    var requestUrl = "http://thermostat.nicolal.tk/api/measurements?";
     if(from != ""){
         requestUrl = requestUrl.concat("start=" + from +"&");
     }
@@ -399,7 +399,7 @@ function getTableMeasurements(from, to){
             drawTable(xmlHttp.responseText);
         }
     }
-    var requestUrl = "http://tesinaiot.altervista.org/api/measurements?";
+    var requestUrl = "http://thermostat.nicolal.tk/api/measurements?";
     if(from != ""){
         requestUrl = requestUrl.concat("start=" + from +"&");
     }

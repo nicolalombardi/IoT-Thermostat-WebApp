@@ -1,9 +1,10 @@
 <?php
     session_start();
     require_once('DB.php');
+    require_once('c.php');
 
     //Istanzia l'oggetto per eseguire le query sul database
-    $db = new DB('localhost', 'my_tesinaiot', 'tesinaiot', '');
+    $db = new DB($host, $db, $user, $pass);
     header('Access-Control-Allow-Origin: *');
     //Se la richiesta è GET
     if ($_SERVER['REQUEST_METHOD'] == "GET"){
@@ -15,7 +16,7 @@
             //Se entrambi i limiti sono stati impostati
             if(isset($_GET[start]) && isset($_GET[end])){
                 $query = "SELECT * FROM measurements WHERE timestamp >= :startDate AND timestamp <= :endDate ORDER BY timestamp";
-                echo json_encode($db->query($query, ['startDate' => $_GET[start], 'endDate' => $_GET[end]]));
+                echo json_encode($db->query($query, array('startDate' => $_GET[start], 'endDate' => $_GET[end])));
             }
             //Se entrambi i limiti NON sono stati impostati
             else if(!isset($_GET[start]) && !isset($_GET[end])){
@@ -25,12 +26,12 @@
             //Se è stato impostato solo l'inizio
             else if(isset($_GET[start])){
                 $query = "SELECT * FROM measurements WHERE timestamp >= :startDate ORDER BY timestamp";
-                echo json_encode($db->query($query, ['startDate' => $_GET[start]]));
+                echo json_encode($db->query($query, array('startDate' => $_GET[start])));
             }
             //se è stata impostata solo la fine
             else if(isset($_GET[end])){
                 $query = "SELECT * FROM measurements WHERE timestamp <= :endDate ORDER BY timestamp";
-                echo json_encode($db->query($query, ['endDate' => $_GET[end]]));
+                echo json_encode($db->query($query, array('endDate' => $_GET[end])));
             }
 
             http_response_code(200);
@@ -65,10 +66,10 @@
             $isOn = $postBody->isOn;
 
             //Esegue la query sul database utilizzando i dati presenti nel body
-            $db->query("INSERT INTO measurements(`timestamp`, `temperature`, `isOn`) VALUES(:cioa, :temperature, :isOn)", ['cioa' => $timestamp, 'temperature' => $temperature, 'isOn' => $isOn]);
+            $db->query("INSERT INTO measurements(`timestamp`, `temperature`, `isOn`) VALUES(:cioa, :temperature, :isOn)", array('cioa' => $timestamp, 'temperature' => $temperature, 'isOn' => $isOn));
 
             header('Content-Type: application/json');
-            echo json_encode(["error" => "none"]);
+            echo json_encode(array("error" => "none"));
             http_response_code(200);
         }
         else if($_GET[url] == 'controls'){
@@ -81,16 +82,16 @@
                 $type = $postBody->type;
                 $value = $postBody->value;
 
-                $db->query("INSERT INTO controls(`type`, `value`) VALUES(:type, :value)", ["type" => $type, "value" => $value]);
+                $db->query("INSERT INTO controls(`type`, `value`) VALUES(:type, :value)", array("type" => $type, "value" => $value));
 
                 //Risponde al client
                 header('Content-Type: application/json');
-                echo json_encode(["error" => "none"]);
+                echo json_encode(array("error" => "none"));
                 http_response_code(200);
             }else{
                 header('Content-Type: application/json');
-                echo json_encode(["error" => "auth"]);
-                http_response_code(401);
+                echo json_encode(array("error" => "auth"));
+                http_response_code(200);
             }
             
         }

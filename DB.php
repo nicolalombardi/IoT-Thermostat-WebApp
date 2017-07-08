@@ -12,8 +12,9 @@ class DB {
     public function query($query, $params = array()) {
         $statement = $this->pdo->prepare($query);
         $statement->execute($params);
-
-        if (explode(' ', $query)[0] == 'SELECT') {
+        
+        $exp = explode(' ', $query);
+        if ($exp[0] == 'SELECT') {
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
 
