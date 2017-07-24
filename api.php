@@ -9,7 +9,7 @@
     //Se la richiesta è GET
     if ($_SERVER['REQUEST_METHOD'] == "GET"){
 
-        if($_GET[url] == 'measurements'){
+        if($_GET['url'] == 'measurements'){
             //Indica che il contenuto della risposta sarà di tipo JSON
             header('Content-Type: application/json');
 
@@ -36,14 +36,14 @@
 
             http_response_code(200);
         }
-        if($_GET[url] == 'live'){
+        if($_GET['url'] == 'live'){
             //Indica che il contenuto della risposta sarà di tipo JSON
             header('Content-Type: application/json');
 
             $query = "SELECT timestamp, temperature, isOn FROM measurements WHERE ID = (SELECT MAX(ID) FROM measurements)";
             echo json_encode($db->query($query));
         }
-        if($_GET[url] == 'controls'){
+        if($_GET['url'] == 'controls'){
             header('Content-Type: application/json');
             $query = "SELECT * FROM controls WHERE ID = (SELECT MAX(ID) FROM controls)";
             echo json_encode($db -> query($query, null));
@@ -55,7 +55,7 @@
     }
     //Se la richiesta è POST
     else if ($_SERVER['REQUEST_METHOD'] == "POST"){
-        if($_GET[url] == 'measurements'){
+        if($_GET['url'] == 'measurements'){
             //Legge il contenuto del body della richiesta
             $postBody = file_get_contents('php://input');
             //Decodifica il JSON trasformandolo in un array
@@ -72,7 +72,7 @@
             echo json_encode(array("error" => "none"));
             http_response_code(200);
         }
-        else if($_GET[url] == 'controls'){
+        else if($_GET['url'] == 'controls'){
             if(isset($_SESSION['logged'])){
                 //Legge il contenuto del body della richiesta
                 $postBody = file_get_contents('php://input');

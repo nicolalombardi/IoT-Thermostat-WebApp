@@ -1,9 +1,10 @@
 <?PHP
 session_start();
 require_once('DB.php');
+require_once('c.php');
 
 //Istanzia l'oggetto per eseguire le query sul database
-$db = new DB('localhost', 'my_tesinaiot', 'tesinaiot', '');
+$db = new DB($host, $db, $user, $pass);
 
 $result = $db->query("SELECT * FROM login", []);
 
