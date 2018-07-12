@@ -9,7 +9,7 @@
       <link rel="manifest" href="/manifest.json">
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff5722">
       <meta name="theme-color" content="#ff5722">
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="css/style.css" />
       <script defer src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
