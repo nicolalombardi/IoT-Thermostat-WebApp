@@ -23,6 +23,8 @@
   }); // end of document ready
 })(jQuery);
 
+var apiURL = "https://thermostat.nlombardi.com/api";
+
 /*
 *  On page load functions
 */
@@ -41,7 +43,7 @@ function onGraficoLoad(){
     document.getElementById("from_date").value = moment().format("YYYY-MM-DD");
     document.getElementById("to_date").value = moment().add(1, 'day').format("YYYY-MM-DD");
     window.onresize = function(event) {
-        updateGraph();
+        updateGraphUI();
     }
     updateGraph();
 }
@@ -90,7 +92,7 @@ function getLiveData(){
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
         updateStats(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", "http://thermostat.nicolal.tk/api/live", true); // true for asynchronous
+    xmlHttp.open("GET", apiURL + "/live", true); // true for asynchronous
     xmlHttp.send(null);
 }
 
@@ -139,7 +141,7 @@ function changeTimer(how){
 function setTemperature(){
     var temperature = document.getElementById("temperature").innerHTML;
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", "http://thermostat.nicolal.tk/api/controls", true);
+    xmlHttp.open("POST", apiURL + "/controls", true);
     xmlHttp.onreadystatechange = function (){
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             console.log(xmlHttp.responseText);
@@ -167,7 +169,7 @@ function setToggle(){
 
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", "http://thermostat.nicolal.tk/api/controls", true);
+    xmlHttp.open("POST", apiURL + "/controls", true);
     xmlHttp.onreadystatechange = function (){
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             console.log(xmlHttp.responseText);
@@ -186,7 +188,7 @@ function setToggle(){
 //Function that sends the target timer to the api page
 function setTimer(){
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", "http://thermostat.nicolal.tk/api/controls", true);
+    xmlHttp.open("POST", apiURL + "/controls", true);
     xmlHttp.onreadystatechange = function (){
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             console.log(xmlHttp.responseText);
@@ -219,7 +221,7 @@ function setCurrentState(){
 
         }
     }
-    xmlHttp.open("GET", "http://thermostat.nicolal.tk/api/live", true); // true for asynchronous
+    xmlHttp.open("GET", apiURL + "/live", true); // true for asynchronous
     xmlHttp.send(null);
 }
 
@@ -266,6 +268,9 @@ function resetLogin(){
 *  Page: grafico.html
 */
 
+
+var lastGraphResponse;
+
 //Function that starts the graph update
 function updateGraph(){
     var from = document.getElementById("from_date").value;
@@ -273,6 +278,11 @@ function updateGraph(){
 
     getGraphMeasurements(from, to);
 }
+
+function updateGraphUI(){
+	drawGraph(lastGraphResponse);
+}
+	
 
 //Function that draws the graph
 function drawGraph(response){
@@ -367,10 +377,11 @@ function getGraphMeasurements(from, to){
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-            drawGraph(xmlHttp.responseText);
+			lastGraphResponse = xmlHttp.responseText;
+            drawGraph(lastGraphResponse);
         }
     }
-    var requestUrl = "http://thermostat.nicolal.tk/api/measurements?";
+    var requestUrl = apiURL + "/measurements?";
     if(from != ""){
         requestUrl = requestUrl.concat("start=" + from +"&");
     }
@@ -399,7 +410,7 @@ function getTableMeasurements(from, to){
             drawTable(xmlHttp.responseText);
         }
     }
-    var requestUrl = "http://thermostat.nicolal.tk/api/measurements?";
+    var requestUrl = apiURL + "/measurements?";
     if(from != ""){
         requestUrl = requestUrl.concat("start=" + from +"&");
     }
